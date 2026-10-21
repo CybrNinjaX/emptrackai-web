@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  color: #0f172a;
+  background: #f4f7fb;
+}
+
+body {
+  min-width: 320px;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+html,
+#root { height: 100%; overflow: hidden; }
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgb(6 182 212 / 45%);
+  outline-offset: 2px;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-18px, 16px, 0) scale(1.035); }
+}
+
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes error-in {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-brand-enter,
+.auth-copy-enter,
+.login-heading-enter,
+.login-card-enter {
+  animation: rise-in 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.auth-copy-enter { animation-delay: 100ms; }
+.team-illustration-enter { animation: rise-in 800ms cubic-bezier(0.2, 0.75, 0.25, 1) 260ms both; }
+.login-heading-enter { animation-delay: 80ms; }
+.login-card-enter { animation-delay: 180ms; }
+.dashboard-enter { animation: rise-in 700ms cubic-bezier(0.2, 0.75, 0.25, 1) 100ms both; }
+.marketing-column { animation: rise-in 600ms cubic-bezier(0.2, 0.75, 0.25, 1) both; }
+.login-column { animation: rise-in 650ms cubic-bezier(0.2, 0.75, 0.25, 1) 120ms both; }
+.home-welcome-enter { animation: rise-in 500ms cubic-bezier(0.2, 0.75, 0.25, 1) both; }
+.preview-screen-one { background: linear-gradient(135deg, #162b38, #52646a 48%, #172630); }
+.preview-screen-two { background: linear-gradient(145deg, #8c7467, #334654 54%, #111d2b); }
+.preview-screen-three { background: linear-gradient(135deg, #20384a, #4e6672 48%, #172631); }
+.ambient-ring-one { animation: drift 13s ease-in-out infinite; }
+.ambient-ring-two { animation: drift 16s ease-in-out -4s infinite reverse; }
+.ambient-glow { animation: glow-breathe 8s ease-in-out infinite; }
+.form-error { animation: error-in 180ms ease-out both; }
+
+.login-submit {
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.login-submit:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px rgb(17 43 74 / 20%);
+}
+
+.login-submit:not(:disabled):active { transform: translateY(0) scale(0.99); }
+
+@media (max-width: 640px) {
+  .marketing-column { display: none; }
+  .auth-main { grid-template-columns: minmax(0, 1fr); }
+  .login-column { max-width: 390px; }
+  .topbar > div { padding-top: 0.55rem; padding-bottom: 0.55rem; }
+}
+
+@media (max-height: 620px) {
+  .auth-main { padding-top: 0.35rem; padding-bottom: 0.35rem; }
+  .login-column > #security { margin-top: 0.55rem; }
+  .login-card-enter > div:first-child { padding-top: 0.8rem; padding-bottom: 0.45rem; }
+  .login-card-enter form { padding-bottom: 0.8rem; }
+  .login-card-enter form > * + * { margin-top: 0.55rem; }
+  .login-card-enter input { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+  .login-card-enter form > button[type="submit"] { padding-top: 0.6rem; padding-bottom: 0.6rem; }
+}
+
+@media (max-height: 520px) {
+  .marketing-column { display: none; }
+  .auth-main { grid-template-columns: minmax(0, 1fr); }
+  .login-column { max-width: 390px; }
+}
+
+@media (max-height: 480px) and (max-width: 640px) {
+  .login-column > #security { display: none; }
+  .login-card-enter form > p:not([role="alert"]) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
