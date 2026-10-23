@@ -3,7 +3,7 @@ import AuthLayout from '../components/layout/AuthLayout.jsx'
 import LoginForm from '../components/auth/LoginForm.jsx'
 import { login } from '../services/auth.js'
 
-export default function Login({ onSuccess }) {
+export default function Login({ onSuccess, onRegister }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -11,8 +11,7 @@ export default function Login({ onSuccess }) {
     setError('')
     setLoading(true)
     try {
-      const admin = await login(credentials)
-      onSuccess(admin)
+      onSuccess(await login(credentials))
     } catch (requestError) {
       setError(requestError.message)
     } finally {
@@ -23,6 +22,9 @@ export default function Login({ onSuccess }) {
   return (
     <AuthLayout>
       <LoginForm onSubmit={handleLogin} error={error} loading={loading} />
+      <p className="mt-4 text-center text-xs text-slate-500">New to EmpTrackAI?{' '}
+        <button type="button" onClick={onRegister} className="font-semibold text-sky-700 hover:text-sky-800">Create an admin account</button>
+      </p>
     </AuthLayout>
   )
 }

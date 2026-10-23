@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: env.API_PROXY_TARGET || 'http://57.158.26.96',
+          target: env.API_PROXY_TARGET || 'http://127.0.0.1:8000/',
           changeOrigin: true,
         },
       },
