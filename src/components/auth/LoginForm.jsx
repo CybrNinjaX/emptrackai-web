@@ -4,7 +4,7 @@ function Icon({ children }) {
   return <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{children}</svg>
 }
 
-export default function LoginForm({ onSubmit, error, loading }) {
+export default function LoginForm({ onSubmit, onRegister, error, loading }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -49,6 +49,10 @@ export default function LoginForm({ onSubmit, error, loading }) {
 
         <button disabled={loading} type="submit" className="login-submit flex w-full items-center justify-center gap-2 rounded-lg bg-sky-600 px-4 py-3 text-[11px] font-bold text-white shadow-md shadow-sky-700/15 transition hover:bg-sky-700 disabled:cursor-wait disabled:opacity-70">
           {loading ? <><span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/40 border-t-white"/>Signing in…</> : <>Sign in to Portal <span aria-hidden="true">→</span></>}
+        </button>
+
+        <button type="button" onClick={onRegister} className="flex w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-3 text-[11px] font-bold text-slate-700 transition hover:border-sky-200 hover:bg-sky-50 hover:text-sky-800">
+          Create an admin account
         </button>
 
         <div className="flex items-center gap-3 pt-0.5 text-[8px] font-semibold uppercase tracking-[0.1em] text-slate-400"><span className="h-px flex-1 bg-slate-100"/>Protected enterprise access<span className="h-px flex-1 bg-slate-100"/></div>

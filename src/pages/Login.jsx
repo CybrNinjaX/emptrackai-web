@@ -21,10 +21,8 @@ export default function Login({ onSuccess, onRegister }) {
 
   return (
     <AuthLayout>
-      <LoginForm onSubmit={handleLogin} error={error} loading={loading} />
-      <p className="mt-4 text-center text-xs text-slate-500">New to EmpTrackAI?{' '}
-        <button type="button" onClick={onRegister} className="font-semibold text-sky-700 hover:text-sky-800">Create an admin account</button>
-      </p>
+      <LoginForm onSubmit={handleLogin} onRegister={onRegister} error={error} loading={loading} />
+
     </AuthLayout>
   )
 }
